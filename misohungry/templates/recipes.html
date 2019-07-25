@@ -1,0 +1,17 @@
+<!doctype html>
+<title>MisoHungry - recipes</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='function.js') }}"></script>
+
+
+<section class="content">
+	<div class="text-center">
+		<div class="row">
+			{% for r in list_of_recipe %}
+			<button class="btn btn-outline-dark btn-block pixel-border col-xs-6 col-sm-4 col-md3 col-lg-2" style="margin-bottom:4px;white-space: normal;" onclick="window.location.href='{{ url_for('main.displayRecipe', recipe=r['title'])}}';">{{ r['title'] }}</button>
+			{% endfor %}
+		</div>
+	</div>
+</section>

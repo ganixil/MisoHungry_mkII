@@ -1,0 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Barriecito:400);
+.title {
+  font-family: 'Barriecito', sans-serif !important;
+}
+.button-wrapper .btn {
+	margin-bottom: 5px;
+	width: 250px;
+}

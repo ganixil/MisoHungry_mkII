@@ -1,0 +1,29 @@
+<!doctype html>
+<title>MisoHungry</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='function.js') }}"></script>
+
+<section class="content">
+	<div class="text-center">
+		<h1 class='title display-1'>MisoHungry</h1>
+		<form class='material_fom col-lg-12' method="post">
+			<div id='input_wrapper'>
+				<p>Enter your available materials</p>
+				{% for i in range(4) %}
+				<input type="text" name="material" class='form-control'>
+				<br>
+				{% endfor %}
+			</div>
+			<div class='col-md-12 button-wrapper'>
+				<button type="button" class="btn btn-secondary" onclick="addMaterial()">
+				Add more material
+				</button>
+				<button type="submit" class="btn btn-primary ">
+				Search
+				</button>
+			</div>
+		</form>
+	</div>
+</section>

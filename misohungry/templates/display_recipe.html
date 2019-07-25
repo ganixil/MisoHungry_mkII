@@ -1,0 +1,21 @@
+<!doctype html>
+<title>MisoHungry - recipe</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='function.js') }}"></script>
+
+
+<section class="content">
+	<div class="text-center">
+		<h1 class="display-4">{{recipe['title']}}</h1>
+		<h3> Ingredients </h3>
+		{% for ingred in recipe['ingredients'] %}
+		<li> {{ ingred }}</li>
+		{% endfor %}
+		<h3> Instructions </h3>
+		<p>{{ recipe['instructions'] }}</p>
+		<h3> Total Time: {{ recipe['total_time'] }} minutes </h3>
+		<h3> Serving : {{ recipe['yields'] }}</h3>
+	</div>
+</section>
