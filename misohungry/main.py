@@ -12,41 +12,40 @@ if (not len(firebase_admin._apps)):
 
 RECIPE = db.reference("recipes")
 
-bp = Blueprint('main',__name__, url_prefix='/')
 app = Flask(__name__)
-cache = []
 
-@bp.route('/')
+
+@app.route('/')
 def main():
 	return render_template('index.html')
 
-@bp.route('/', methods=['POST','GET'])
+@app.route('/', methods=['POST','GET'])
 def list_recipe():
 	materials = request.form.getlist('material')
 	materials[:] = [x for x in materials if x!='']
 
 
 	list_of_recipe = []
+	#Here is the query algorithm, but it is pretty slow
+	#TODO: faster algorithm needed
 	for recipe in RECIPE.get():
 		try:
 			ing = recipe['ingredients']
 			ing = ' '.join(ing)
 			ct = 0
 			for m in materials:
-				if m in ing:
+				if m in ing or m.lower() in ing:
 					ct+=1
 			if len(materials) == ct:
 				list_of_recipe.append(recipe)
 		except:
-			print("no ingredients")
+			pass
 
-	global cache
-	cache = list_of_recipe
 	return render_template('recipes.html', list_of_recipe = list_of_recipe)
 
-@bp.route('/<recipe>')
+@app.route('/<recipe>')
 def displayRecipe(recipe):
-	for r in cache:
+	for r in RECIPE.get():
 		if r['title'] == recipe:
 			recipe = r
 			break
