@@ -1,7 +1,7 @@
 from flask import (
 	Flask, Blueprint, flash, g, redirect, render_template, request, session, url_for
 	)
-
+from flask_session import Session
 import firebase_admin
 from firebase_admin import db
 
@@ -13,6 +13,9 @@ if (not len(firebase_admin._apps)):
 RECIPE = db.reference("recipes")
 
 app = Flask(__name__)
+SESSION_TYPE = 'filesystem'
+app.config.from_object(__name__)
+Session(app)
 
 
 @app.route('/')
@@ -41,11 +44,12 @@ def list_recipe():
 		except:
 			pass
 
+	session['recipes'] = list_of_recipe
 	return render_template('recipes.html', list_of_recipe = list_of_recipe)
 
 @app.route('/<recipe>')
 def displayRecipe(recipe):
-	for r in RECIPE.get():
+	for r in session['recipes']:
 		if r['title'] == recipe:
 			recipe = r
 			break
