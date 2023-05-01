@@ -1,4 +1,4 @@
-Flask==1.0.4
+Flask==2.3.2
 Flask-Session
 Werkzeug>=0.14.0
 firebase-admin==2.13.0
